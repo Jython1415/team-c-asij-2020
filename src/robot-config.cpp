@@ -7,7 +7,7 @@ brain Brain;
 
 controller ctlr1;
 
-#define _PRACTICE_BOT_
+// #define _PRACTICE_BOT_
 #ifndef _PRACTICE_BOT_
 
 // main bot
