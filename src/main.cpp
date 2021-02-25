@@ -9,17 +9,26 @@ bool chassis_tank_drive = true;
 // speed multiplier
 double chassis_speed_multiplier = 0.8;
 
+// controler variables
+int axis1;
+int axis2;
+int axis3;
+int axis4;
+
 int main() {
   // Initializing Robot Configuration. DO NOT REMOVE!
   vexcodeInit();
   
-  int axis1 = ctlr1.Axis1.value();
-  int axis2 = ctlr1.Axis2.value();
-  int axis3 = ctlr1.Axis3.value();
-  // int axis4 = ctlr1.Axis4.value();
+  
 
   while (true)
   {
+    // controller variables update
+    axis1 = ctlr1.Axis1.value();
+    axis2 = ctlr1.Axis2.value();
+    axis3 = ctlr1.Axis3.value();
+    axis4 = ctlr1.Axis4.value();
+
     // speed multiplier control
     chassis_speed_multiplier = ctlr1.ButtonUp.pressing() ? 0.8 : ctlr1.ButtonDown.pressing() ? 0.4 : 1.0;
 
@@ -27,8 +36,13 @@ int main() {
     if (chassis_tank_drive)
     {
       // basic tank drive
-      chassisL_set((abs(axis3) > 20 ? axis3 : 0) * chassis_speed_multiplier);
-      chassisR_set((abs(axis2) > 20 ? axis2 : 0) * chassis_speed_multiplier);
+      int chassis_left_power = abs(axis3) > 10 ? axis3 : 0;
+      chassis_left_power *= chassis_speed_multiplier;
+      int chassis_right_power = abs(axis2) > 20 ? axis2 : 0;
+      chassis_right_power *= chassis_speed_multiplier;
+
+      chassisL_set(chassis_left_power);
+      chassisR_set(chassis_right_power);
     }
     else
     {
