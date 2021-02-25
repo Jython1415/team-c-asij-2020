@@ -30,3 +30,6 @@
 *.exe
 *.out
 *.app
+build/teamcasij2020.bin
+build/teamcasij2020.elf
+build/teamcasij2020.map
