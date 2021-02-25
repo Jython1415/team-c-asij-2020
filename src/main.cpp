@@ -16,7 +16,7 @@ int main() {
   while (true)
   {
     // speed multiplier control
-    chassis_speed_multiplier = ctlr1.ButtonR1.pressing() ? 1.0 : ctlr1.ButtonR2.pressing() ? 0.4 : 0.8;
+    chassis_speed_multiplier = ctlr1.ButtonUp.pressing() ? 0.8 : ctlr1.ButtonDown.pressing() ? 0.4 : 1.0;
 
     // chassis control
     if (chassis_tank_drive)
@@ -48,11 +48,11 @@ int main() {
     }
 
     // roller control
-    if (ctlr1.ButtonUp.pressing())
+    if (ctlr1.ButtonR1.pressing())
     {
       roller_set(100);
     }
-    else if (ctlr1.ButtonDown.pressing())
+    else if (ctlr1.ButtonR2.pressing())
     {
       roller_set(-100);
     }
