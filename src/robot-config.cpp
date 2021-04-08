@@ -16,7 +16,7 @@ motor chassisRB = motor(PORT8, true);
 motor intakeL = motor(PORT20, false);
 motor intakeR = motor(PORT7, true);
 
-motor rollerT = motor(PORT11, false);
+motor rollerT = motor(PORT14, false);
 motor rollerB = motor(PORT16, true);
 
 /**
