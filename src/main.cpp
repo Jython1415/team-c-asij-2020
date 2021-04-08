@@ -36,7 +36,7 @@ int main() {
     if (chassis_tank_drive)
     {
       // basic tank drive
-      if (!ctlr1.ButtonB.pressing())
+      if (!ctlr1.ButtonX.pressing())
       {
         int chassis_left_power = abs(axis3) > 10 ? axis3 : 0;
         chassis_left_power *= chassis_speed_multiplier;
@@ -73,7 +73,7 @@ int main() {
     }
 
     // roller control
-    if (!ctlr1.ButtonB.pressing())
+    if (!ctlr1.ButtonX.pressing())
     {
       if (ctlr1.ButtonR1.pressing())
       {
