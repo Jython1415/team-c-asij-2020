@@ -36,13 +36,21 @@ int main() {
     if (chassis_tank_drive)
     {
       // basic tank drive
-      int chassis_left_power = abs(axis3) > 10 ? axis3 : 0;
-      chassis_left_power *= chassis_speed_multiplier;
-      int chassis_right_power = abs(axis2) > 20 ? axis2 : 0;
-      chassis_right_power *= chassis_speed_multiplier;
+      if (!ctlr1.ButtonB.pressing())
+      {
+        int chassis_left_power = abs(axis3) > 10 ? axis3 : 0;
+        chassis_left_power *= chassis_speed_multiplier;
+        int chassis_right_power = abs(axis2) > 20 ? axis2 : 0;
+        chassis_right_power *= chassis_speed_multiplier;
 
-      chassisL_set(chassis_left_power);
-      chassisR_set(chassis_right_power);
+        chassisL_set(chassis_left_power);
+        chassisR_set(chassis_right_power);
+      }
+      else // when button B is pressed
+      {
+        chassisL_set(-60);
+        chassisR_set(-60);
+      }
     }
     else
     {
@@ -65,17 +73,24 @@ int main() {
     }
 
     // roller control
-    if (ctlr1.ButtonR1.pressing())
+    if (!ctlr1.ButtonB.pressing())
     {
-      roller_set(100);
-    }
-    else if (ctlr1.ButtonR2.pressing())
-    {
-      roller_set(-100);
+      if (ctlr1.ButtonR1.pressing())
+      {
+        roller_set(100);
+      }
+      else if (ctlr1.ButtonR2.pressing())
+      {
+        roller_set(-100);
+      }
+      else
+      {
+        roller_set(0);
+      }
     }
     else
     {
-      roller_set(0);
+      roller_set(80);
     }
 
     task::sleep(20);
