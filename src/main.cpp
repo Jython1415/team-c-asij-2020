@@ -15,10 +15,21 @@ int axis2;
 int axis3;
 int axis4;
 
-int main() {
-  // Initializing Robot Configuration. DO NOT REMOVE!
+// actions inside this functions will be performed once after the robot is powered on =============
+void pre_auton( void )
+{
   vexcodeInit();
-  
+}
+
+// all code for the autonomous section goes in here ===============================================
+void autonomous( void )
+{
+
+}
+
+// all code for the usercontrol section goes in here ==============================================
+void usercontrol( void )
+{ 
   while (true)
   {
     // controller variables update
@@ -93,4 +104,19 @@ int main() {
 
     task::sleep(20);
   }
+}
+
+int main()
+{
+  vexcodeInit(); // Initializing Robot Configuration. DO NOT REMOVE!
+
+  Competition.autonomous( autonomous );
+  Competition.drivercontrol( usercontrol );
+
+  pre_auton(); // run the pre_auton code
+      
+  //Prevent main from exiting with an infinite loop.                        
+  while(1) {
+    vex::task::sleep(20); //Sleep the task for a short amount of time to prevent wasted resources.
+  }  
 }
